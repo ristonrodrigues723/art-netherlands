@@ -4,7 +4,7 @@ const height = 125;
 
 setDocDimensions(width, height);
 
-function drawKiteWithTailAtBottom(t, centerX, centerY, size) {
+function drawSmallKiteWithTailAtBottom(t, centerX, centerY, size) {
   const halfWidth = size / 2;
   const halfHeight = size * 0.75;
   const tailLength = size * 0.5;
@@ -21,6 +21,9 @@ function drawKiteWithTailAtBottom(t, centerX, centerY, size) {
   t.goTo([centerX, Math.max(0, centerY - halfHeight - tailLength)]);
 }
 
-drawKiteWithTailAtBottom(t, width / 2, height / 2, 40);
+
+const smallerKiteSize = 20;
+
+drawSmallKiteWithTailAtBottom(t, width / 2, height / 2, smallerKiteSize);
 
 drawLines(t.lines());
