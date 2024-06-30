@@ -4,7 +4,7 @@ const height = 125;
 
 setDocDimensions(width, height);
 
-function drawSmallKiteWithTailAtBottom(t, centerX, centerY, size) {
+function drawTinyFlower(t, centerX, centerY, size) {
   const halfWidth = size / 2;
   const halfHeight = size * 0.75;
   const tailLength = size * 0.5;
@@ -21,9 +21,15 @@ function drawSmallKiteWithTailAtBottom(t, centerX, centerY, size) {
   t.goTo([centerX, Math.max(0, centerY - halfHeight - tailLength)]);
 }
 
+function drawSingleRandomFlower() {
+  const tinyFlowerSize = 5; // Small size for the flower
+  const randomX = bt.randInRange(10, width - 10);
+  const randomY = bt.randInRange(10, height - 10);
+  
+  drawTinyFlower(t, randomX, randomY, tinyFlowerSize);
+}
 
-const smallerKiteSize = 20;
-
-drawSmallKiteWithTailAtBottom(t, width / 2, height / 2, smallerKiteSize);
+// Draw a random flower
+drawSingleRandomFlower();
 
 drawLines(t.lines());
