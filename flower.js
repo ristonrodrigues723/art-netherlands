@@ -24,18 +24,20 @@ function drawTinyFlower(t, centerX, centerY, size, color) {
   drawLines(t.lines(), { fill: color });
 }
 
-function drawMultiColorFlowers(count) {
-  const tinyFlowerSize = 5; // Small size for the flowers
+function drawRandomColorFlowers(count) {
+  const tinyFlowerSize = 5;
   const colors = ['red', 'blue', 'pink', 'purple', 'white'];
 
   for (let i = 0; i < count; i++) {
     const randomX = bt.randInRange(10, width - 10);
     const randomY = bt.randInRange(10, height - 10);
+    
+
     const randomColor = colors[Math.floor(bt.randInRange(0, colors.length))];
     
     drawTinyFlower(t, randomX, randomY, tinyFlowerSize, randomColor);
   }
 }
 
-// Draw 20 random tiny flowers with different colors
-drawMultiColorFlowers(20);
+
+drawRandomColorFlowers(20);
