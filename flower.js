@@ -21,15 +21,18 @@ function drawTinyFlower(t, centerX, centerY, size) {
   t.goTo([centerX, Math.max(0, centerY - halfHeight - tailLength)]);
 }
 
-function drawSingleRandomFlower() {
-  const tinyFlowerSize = 5; // Small size for the flower
-  const randomX = bt.randInRange(10, width - 10);
-  const randomY = bt.randInRange(10, height - 10);
-  
-  drawTinyFlower(t, randomX, randomY, tinyFlowerSize);
+function drawRandomFlowers(count) {
+  const tinyFlowerSize = 3; // Even smaller size
+
+  for (let i = 0; i < count; i++) {
+    const randomX = bt.randInRange(0, width);
+    const randomY = bt.randInRange(0, height);
+    
+    drawTinyFlower(t, randomX, randomY, tinyFlowerSize);
+  }
 }
 
-// Draw a random flower
-drawSingleRandomFlower();
+// Draw random flowers -multiple times
+drawRandomFlowers(25);
 
 drawLines(t.lines());
