@@ -4,7 +4,7 @@ const height = 125;
 
 setDocDimensions(width, height);
 
-function drawTinyFlower(t, centerX, centerY, size) {
+function drawTinyFlower(t, centerX, centerY, size, color) {
   const halfWidth = size / 2;
   const halfHeight = size * 0.75;
   const tailLength = size * 0.5;
@@ -19,20 +19,23 @@ function drawTinyFlower(t, centerX, centerY, size) {
 
   // Draw tail at the bottom
   t.goTo([centerX, Math.max(0, centerY - halfHeight - tailLength)]);
+
+  // Fill the flower
+  drawLines(t.lines(), { fill: color });
 }
 
-function drawRandomFlowers(count) {
-  const tinyFlowerSize = 3; // Even smaller size
+function drawMultiColorFlowers(count) {
+  const tinyFlowerSize = 5; // Small size for the flowers
+  const colors = ['red', 'blue', 'pink', 'purple', 'white'];
 
   for (let i = 0; i < count; i++) {
-    const randomX = bt.randInRange(0, width);
-    const randomY = bt.randInRange(0, height);
+    const randomX = bt.randInRange(10, width - 10);
+    const randomY = bt.randInRange(10, height - 10);
+    const randomColor = colors[Math.floor(bt.randInRange(0, colors.length))];
     
-    drawTinyFlower(t, randomX, randomY, tinyFlowerSize);
+    drawTinyFlower(t, randomX, randomY, tinyFlowerSize, randomColor);
   }
 }
 
-// Draw random flowers -multiple times
-drawRandomFlowers(25);
-
-drawLines(t.lines());
+// Draw 20 random tiny flowers with different colors
+drawMultiColorFlowers(20);
