@@ -42,16 +42,16 @@ t.goTo([63 + 10, 63 - 5]);
 t.goTo([63, 63 - 5]); 
 t.goTo([63, 63]); 
 
-// Draw and fill trapezium on top of the square
+// Draw and fill trapezium at y = 73
 const trapeziumBaseWidth = 20;
 const trapeziumTopWidth = 10;
 const trapeziumHeight = 10;
-const trapeziumY = centerY - squareSize/2 - trapeziumHeight; // This places it right on top of the square
-drawAndFillTrapezium(t, centerX, trapeziumY, trapeziumBaseWidth, trapeziumTopWidth, trapeziumHeight, 'brown');
+const trapeziumY = 53; // Set to y = 73
+drawAndFillTrapezium(t, centerX, trapeziumY, trapeziumBaseWidth, trapeziumTopWidth, trapeziumHeight, 'orange');
 
-// Draw and fill diamond slightly above the trapezium
+// Draw and fill diamond at y = 83
 const diamondSize = 15;
-const diamondY = trapeziumY - diamondSize/2 - 5; // 5 units above the top of the trapezium
+const diamondY = 63; // Set to y = 83
 drawAndFillDiamond(t, centerX, diamondY, diamondSize, 'brown');
 
 function drawAndFillTrapezium(t, centerX, centerY, baseWidth, topWidth, height, color) {
