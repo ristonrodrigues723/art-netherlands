@@ -1,21 +1,113 @@
+const t = new bt.Turtle();
 const width = 125;
 const height = 125;
-
 setDocDimensions(width, height);
 
-const finalLines = [];
 
-const t = new bt.Turtle();
-const rr = bt.randInRange;
-const sunSize = rr(15, 25);
 
-// Draw a horizontal line at y = 73
-const line = [
-  [0, 73],
-  [width, 73]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function drawTinyFlower(t, centerX, centerY, size, color) {
+  const halfWidth = size / 2;
+  const halfHeight = size * 0.75;
+  const tailLength = size * 0.5;
+
+  // Create a single path for the entire flower
+  const flowerPath = [
+    [centerX, centerY - halfHeight],
+    [centerX - halfWidth, centerY],
+    [centerX, centerY + halfHeight],
+    [centerX + halfWidth, centerY],
+    [centerX, centerY - halfHeight],
+    [centerX, Math.max(0, centerY - halfHeight - tailLength)]
+  ];
+
+  // Draw and fill the flower in one step
+drawLines([flowerPath], { fill: color, stroke: 'black', strokeWidth: 0.5 });
+}
+
+function drawRandomColorFlowers(count) {
+  const tinyFlowerSize = 3.2;
+  const colors = ['red', 'blue', 'pink', 'purple', 'white'];
+  for (let i = 0; i < count; i++) {
+    const randomX = bt.randInRange(10, 115); // Adjusted x-coordinate range
+    const randomY = bt.randInRange(10, 63);  // Adjusted y-coordinate range
+    const randomColor = colors[Math.floor(bt.randInRange(0, colors.length))];
+    
+    drawTinyFlower(t, randomX, randomY, tinyFlowerSize, randomColor);
+  }
+}
+
+// Draw the background layers
+const ground = [
+  [
+    [0, 3 * 0],
+    [125, 3 * 0],
+    [125, height],
+    [0, height]
+  ]
+];
+const top = [
+  [
+    [0, 3 * height / 4],
+    [125, 3 * height / 4],
+    [125, height],
+    [0, height]
+  ]
+];
+const middle2 = [
+  [
+    [0, 4.25 * height / 6],
+    [125, 4.25 * height / 6],
+    [125, height],
+    [0, height]
+  ]
+];
+const middle1 = [
+  [
+    [0, 4 * height / 6],
+    [125, 4 * height / 6],
+    [125, height],
+    [0, height]
+  ]
+];
+const down = [
+  [
+    [0, 3 * height / 6],
+    [125, 3 * height / 6],
+    [125, height],
+    [0, height]
+  ]
 ];
 
-drawLines([line], { stroke: 'blue' }); // Change the color if desired
+drawLines(ground, { fill: "#32a467", stroke: "#29636A" });
+drawLines(down, { fill: "#dfecf6", stroke: "#F4CA90" });
+drawLines(middle1, { fill: "#72aee0", stroke: "#C7B087" });
+drawLines(middle2, { fill: "#5693dc", stroke: "#99977E" });
+drawLines(top, { fill: "#0149aa", stroke: "#83c0ea" });
+
+// Draw the flowers
+drawRandomColorFlowers(125);
+
+
+
+const finalLines = [];
 
 
 
@@ -130,105 +222,4 @@ drawRotatedSquareWithRectangles(t, squareX, squareY, squareSide, randomAngle);
 
 bt.join(finalLines, t.lines());
 
-
-const ground = [
-  [
-    [0, 3 * 0],
-    [125, 3 * 0],
-    [125, height],
-    [0, height]
-  ]
-]
-
-const top = [
-  [
-    [0, 3 * height / 4],
-    [125, 3 * height / 4],
-    [125, height],
-    [0, height]
-  ]
-]
-const middle2 = [
-  [
-    [0, 4.25 * height / 6],
-    [125, 4.25 * height / 6],
-    [125, height],
-    [0, height]
-  ]
-]
-
-const middle1 = [
-  [
-    [0, 4 * height / 6],
-    [125, 4 * height / 6],
-    [125, height],
-    [0, height]
-  ]
-]
-const down = [
-  [
-    [0, 3 * height / 6],
-    [125, 3 * height / 6],
-    [125, height],
-    [0, height]
-  ]
-]
-
-const top1 = [
-  [
-    [0, 3 * height / 4],
-    [125, 3 * height / 4],
-    [125, height],
-    [0, height]
-  ]
-]
 drawLines(finalLines);
-
-
-
-drawLines(ground, { fill: "#32a467", stroke: "#29636A" });
-
-drawLines(down, { fill: "#dfecf6", stroke: "#F4CA90" });
-drawLines(middle1, { fill: "#72aee0", stroke: "#C7B087" });
-drawLines(middle2, { fill: "#5693dc", stroke: "#99977E" });
-drawLines(top, { fill: "#0149aa", stroke: "#83c0ea" });
-
-
-
-setDocDimensions(width, height);
-
-function drawTinyFlower(t, centerX, centerY, size, color) {
-  const halfWidth = size / 2;
-  const halfHeight = size * 0.75;
-  const tailLength = size * 0.5;
-
-  t.up();
-  t.goTo([centerX, centerY - halfHeight]);
-  t.down();
-  t.goTo([centerX - halfWidth, centerY]);
-  t.goTo([centerX, centerY + halfHeight]);
-  t.goTo([centerX + halfWidth, centerY]);
-  t.goTo([centerX, centerY - halfHeight]);
-
-  // Draw tail at the bottom
-  t.goTo([centerX, Math.max(0, centerY - halfHeight - tailLength)]);
-
-  // Fill the flower
-  drawLines(t.lines(), { fill: color });
-}
-
-function drawRandomColorFlowers(count) {
-  const tinyFlowerSize = 3.2;
-  const colors = ['red', 'blue', 'pink', 'purple', 'white'];
-
-  for (let i = 0; i < count; i++) {
-    const randomX = bt.randInRange(10, 115); // Adjusted x-coordinate range
-    const randomY = bt.randInRange(10, 63);  // Adjusted y-coordinate range
-
-    const randomColor = colors[Math.floor(bt.randInRange(0, colors.length))];
-    
-    drawTinyFlower(t, randomX, randomY, tinyFlowerSize, randomColor);
-  }
-}
-
-drawRandomColorFlowers(100);
