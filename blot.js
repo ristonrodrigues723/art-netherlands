@@ -220,6 +220,103 @@ drawRotatedSquareWithRectangles(t, squareX, squareY, squareSide, randomAngle);
 
 
 
+const points = [
+  [0, 0],
+  [125, 0],
+  [125, 57],
+  [0, 95]
+];
+
+// Draw and fill the area
+drawLines([points], { fill: 'black', stroke: 'none' });
+
+
+
+
+
+const waveY = 80;
+const sunRadius = 18;
+// turtle at center
+const turtle = new bt.Turtle()
+  .setAngle(0);
+
+// clouds-1 triangle
+turtle.jump([sunRadius * 2.2 - 54, height - 30]);
+for (let i = 0; i < 1; i++) {
+  let angle = 115;
+  turtle.up().setAngle(0).forward(15).setAngle(-angle / 2).down();
+  for (let i = 0; i < 2; i++) {
+    for (let j = 0; j < 3.8; j++) {
+      turtle.left(angle).arc(-angle, 8);
+    }
+    turtle.right(90);
+    for (let j = 0; j < 4; j++) {
+      turtle.left(angle).arc(-angle, 4);
+    }
+    turtle.setAngle(18 - angle / 2);
+  }
+  turtle.setAngle(0).up().forward(27);
+}
+// draw it
+drawLines(turtle.lines(), {
+  fill: "black",
+  stroke: "grey",
+  width: 8
+});
+//
+
+
+// const randomA = Math.floor(Math.random() * (10+20)); // Random x between 30 and 100
+// const constantB = height -55;
+// turtle.jump([randomA, constantB]);
+// for (let i = 0; i < 1; i++) {
+//   let angle = 180;
+//   turtle.up().setAngle(0).forward(14).setAngle(-angle / 2).down();
+//   for (let i = 0; i < 1; i++) {
+//     for (let j = 0; j < 2; j++) {
+//       //length
+//       turtle.left(angle).arc(-angle, 4);
+//     }
+//     turtle.right(9);
+//     for (let j = 0; j < 4; j++) {
+//       // breadth
+//       turtle.left(angle).arc(-angle, 8);
+//     }
+//   }
+// }
+
+const randomX = Math.floor(Math.random() * (90 - 30 + 1)) + 30; // Random x between 30 and 100
+const constantY = height - 25;
+
+turtle.jump([randomX, constantY]);
+for (let i = 0; i < 1; i++) {
+  let angle = 115;
+  turtle.up().setAngle(100).forward(14).setAngle(-angle / 2).down();
+  for (let i = 0; i < 1; i++) {
+    for (let j = 0; j < 2.3; j++) {
+      //length
+      turtle.left(angle).arc(-angle, 4);
+    }
+    turtle.right(9);
+    for (let j = 0; j < 3; j++) {
+      // breadth
+      turtle.left(angle).arc(-angle, 4);
+    }
+  }
+}
+
+
+
+// draw it
+drawLines(turtle.lines(), {
+  fill: "black",
+  stroke: "lightgrey",
+  width: 7
+});
+drawLines(ground, { fill: "#32a467", stroke: "#29636A" });
+
+
+
 bt.join(finalLines, t.lines());
 
 drawLines(finalLines);
